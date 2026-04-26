@@ -1,12 +1,17 @@
-# Updated to use Eclipse Temurin (the official replacement for AdoptOpenJDK)
-FROM eclipse-temurin:17-jre-alpine
+# Use stable, production-safe base image (avoid Alpine issues)
+FROM eclipse-temurin:17-jre
 
-# Simply the artifact path
-ARG artifact=target/spring-boot-web.jar
+# Pick the generated jar dynamically
+ARG artifact=target/*.jar
 
+# App directory
 WORKDIR /opt/app
 
+# Copy jar into container
 COPY ${artifact} app.jar
 
-# This should not be changed
-ENTRYPOINT ["java","-jar","app.jar"]
+# Expose Spring Boot default port
+EXPOSE 8080
+
+# Run with container-aware JVM settings
+ENTRYPOINT ["java","-XX:+UseContainerSupport","-jar","app.jar"]
