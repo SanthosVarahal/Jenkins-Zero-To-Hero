@@ -62,8 +62,8 @@ pipeline {
 
             cd java-maven-sonar-argocd-helm-k8s
 
-            git config user.email "santoshvarahal@gmail.com"
-            git config user.name "SanthosVarahal"
+            git config user.name "Jenkins CI"
+            git config user.email "ci@company.com"
 
             sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" \
             spring-boot-app-manifests/deployment.yml
