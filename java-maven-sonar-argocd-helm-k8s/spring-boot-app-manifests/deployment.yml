@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: maven:3.9.6-eclipse-temurin-17:replaceImageTag
+        image: santhoshvarahal/ultimate-cicd:replaceImageTag
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
